@@ -1,6 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '@/constants/colors';
+import { toFa } from '@/lib/i18n';
 
 type Props = {
   onPressNumber: (n: number) => void;
@@ -26,7 +27,7 @@ export function NumberPad({ onPressNumber, onPressErase, disabled, digitCounts }
             style={({ pressed }) => [styles.key, pressed && !isDisabled && styles.pressed, isDisabled && styles.keyDisabled]}
           >
             <Text allowFontScaling={false} style={[styles.keyText, isDisabled && styles.keyTextDisabled]}>
-              {n}
+              {toFa(n)}
             </Text>
           </Pressable>
         );

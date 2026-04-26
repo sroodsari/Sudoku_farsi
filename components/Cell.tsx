@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { colors } from '@/constants/colors';
+import { toFa } from '@/lib/i18n';
 
 export type CellState = {
   value: number;
@@ -61,7 +62,7 @@ function CellInner({ index, size, value, given, selected, peer, match, conflict,
             { fontSize: size * 0.55, color: textColor, fontWeight: given ? '700' : '600' },
           ]}
         >
-          {value}
+          {toFa(value)}
         </Text>
       )}
     </Pressable>
