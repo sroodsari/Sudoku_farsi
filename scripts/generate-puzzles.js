@@ -100,9 +100,9 @@ function makePuzzle(targetClues) {
 const ser = (b) => Array.from(b).join('');
 
 const TARGETS = {
-  easy:   { count: 30, clues: 40 },
-  medium: { count: 30, clues: 32 },
-  hard:   { count: 30, clues: 27 },
+  easy:   { count: 30, clues: 52 },
+  medium: { count: 30, clues: 42 },
+  hard:   { count: 30, clues: 34 },
 };
 
 const outDir = path.join(__dirname, '..', 'assets', 'puzzles');

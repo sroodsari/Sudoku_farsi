@@ -23,7 +23,6 @@ import { clearGame, loadGame, saveGame, type SavedGame } from '@/lib/storage';
 import {
   N,
   PEERS,
-  findConflicts,
   isComplete,
   parseBoard,
   type Difficulty,
@@ -114,6 +113,7 @@ function reducer(state: State, action: Action): State {
       const idx = state.selected;
       if (state.given[idx]) return state;
       const prev = state.values[idx];
+      if (prev === state.solution[idx]) return state;
       const next = prev === action.value ? 0 : action.value;
       if (next === prev) return state;
       const values = state.values.slice();
@@ -130,6 +130,7 @@ function reducer(state: State, action: Action): State {
       if (state.given[idx]) return state;
       const prev = state.values[idx];
       if (prev === 0) return state;
+      if (prev === state.solution[idx]) return state;
       const values = state.values.slice();
       values[idx] = 0;
       return { ...state, values, history: [...state.history, { idx, prev }] };
@@ -214,10 +215,14 @@ export default function GameScreen() {
   }, [state]);
 
   const conflicts = useMemo(() => {
-    const arr = new Uint8Array(N);
-    for (let i = 0; i < N; i++) arr[i] = state.values[i];
-    return findConflicts(arr);
-  }, [state.values]);
+    const out = new Array(N).fill(false);
+    for (let i = 0; i < N; i++) {
+      const v = state.values[i];
+      if (!v || state.given[i]) continue;
+      if (v !== state.solution[i]) out[i] = true;
+    }
+    return out;
+  }, [state.values, state.given, state.solution]);
 
   const completed = useMemo(() => {
     if (!state.ready) return false;
@@ -248,9 +253,10 @@ export default function GameScreen() {
     return state.values.map((v, i) => {
       const peer = peerSet ? peerSet.has(i) : false;
       const match = selValue > 0 && v === selValue && i !== sel;
+      const locked = state.given[i] || (v !== 0 && v === state.solution[i]);
       return {
         value: v,
-        given: state.given[i],
+        given: locked,
         selected: i === sel,
         peer,
         match,
