@@ -2,9 +2,10 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { I18nManager } from 'react-native';
+import { useEffect, useState } from 'react';
+import { I18nManager, Platform, View } from 'react-native';
 import 'react-native-reanimated';
+import { colors } from '@/constants/colors';
 
 if (!I18nManager.isRTL) {
   try {
@@ -21,17 +22,35 @@ export default function RootLayout() {
     'Vazirmatn-Bold': require('../assets/fonts/Vazirmatn-Bold.ttf'),
   });
 
-  const ready = loaded || !!error;
+  const [webFontsPainted, setWebFontsPainted] = useState(Platform.OS !== 'web');
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !loaded) return;
+    const fonts = (typeof document !== 'undefined' ? document.fonts : null) as
+      | FontFaceSet
+      | null;
+    if (!fonts?.ready) {
+      setWebFontsPainted(true);
+      return;
+    }
+    fonts.ready.then(() => setWebFontsPainted(true)).catch(() => setWebFontsPainted(true));
+  }, [loaded]);
+
+  const ready = (loaded || !!error) && webFontsPainted;
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync().catch(() => {});
   }, [ready]);
 
-  if (!ready) return null;
+  if (!ready) {
+    return <View style={{ flex: 1, backgroundColor: colors.bg }} />;
+  }
 
   return (
     <>
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FAFAFA' } }}>
+      <Stack
+        screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}
+      >
         <Stack.Screen name="index" />
         <Stack.Screen name="game" />
       </Stack>

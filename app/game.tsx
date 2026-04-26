@@ -293,7 +293,7 @@ export default function GameScreen() {
   }, [state.difficulty, state.puzzleId, state.history.length]);
 
   const onBack = useCallback(() => {
-    router.back();
+    router.replace('/');
   }, [router]);
 
   const onHint = useCallback(() => {

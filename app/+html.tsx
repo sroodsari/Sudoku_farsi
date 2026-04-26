@@ -15,8 +15,14 @@ export default function Root({ children }: PropsWithChildren) {
         <meta name="apple-mobile-web-app-title" content="سودوکو" />
         <meta name="theme-color" content="#F5EDDF" />
         <ScrollViewStyleReset />
+        <style dangerouslySetInnerHTML={{ __html: bootCss }} />
       </head>
       <body>{children}</body>
     </html>
   );
 }
+
+const bootCss = `
+  html, body, #root { background-color: #F5EDDF; }
+  body { margin: 0; }
+`;
