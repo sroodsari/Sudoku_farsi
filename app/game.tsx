@@ -278,12 +278,6 @@ export default function GameScreen() {
     dispatch({ type: 'ERASE' });
   }, []);
 
-  const onUndo = useCallback(() => {
-    if (state.history.length === 0) return;
-    Haptics.selectionAsync();
-    dispatch({ type: 'UNDO' });
-  }, [state.history.length]);
-
   const onNewGame = useCallback(() => {
     const fresh = () => {
       won.current = false;
@@ -335,18 +329,7 @@ export default function GameScreen() {
         <Text allowFontScaling={false} style={styles.diffLabel}>
           {fa[state.difficulty]}
         </Text>
-        <Pressable
-          onPress={onUndo}
-          disabled={state.history.length === 0}
-          style={[styles.iconBtn, state.history.length === 0 && styles.iconBtnDisabled]}
-        >
-          <Text
-            allowFontScaling={false}
-            style={[styles.undoText, state.history.length === 0 && styles.undoTextDisabled]}
-          >
-            {fa.undo}
-          </Text>
-        </Pressable>
+        <View style={styles.iconBtn} />
       </View>
 
       <View style={styles.boardWrap}>
@@ -426,19 +409,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  iconBtnDisabled: { opacity: 0.3 },
   iconText: {
     fontSize: 36,
     fontWeight: '700',
     color: colors.primary,
     lineHeight: 36,
   },
-  undoText: {
-    fontFamily: 'Vazirmatn-Bold',
-    fontSize: 22,
-    color: colors.primary,
-  },
-  undoTextDisabled: { color: colors.textMuted },
   diffLabel: {
     fontFamily: 'Vazirmatn-Bold',
     fontSize: 24,

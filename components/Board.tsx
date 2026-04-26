@@ -1,5 +1,5 @@
-import { I18nManager, StyleSheet, View } from 'react-native';
 import { colors } from '@/constants/colors';
+import { I18nManager, StyleSheet, View } from 'react-native';
 import { Cell, type CellState } from './Cell';
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function Board({ cells, size, onCellPress }: Props) {
-  const cellSize = (size - 4) / 9;
+  const cellSize = (size - 8) / 9;
   return (
     <View style={[styles.board, { width: size, height: size }]}>
       {cells.map((c, i) => (
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     flexWrap: 'wrap',
     backgroundColor: colors.surface,
-    borderWidth: 2,
+    borderWidth: 4,
     borderColor: colors.cellBoxBorder,
-    borderRadius: 4,
+    borderRadius: 10,
     overflow: 'hidden',
   },
 });

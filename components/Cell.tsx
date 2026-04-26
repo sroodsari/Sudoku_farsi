@@ -48,8 +48,8 @@ function CellInner({ index, size, value, given, selected, peer, match, conflict,
           width: size,
           height: size,
           backgroundColor: bg,
-          borderRightWidth: col === 8 ? 0 : col % 3 === 2 ? 2.5 : 0.5,
-          borderBottomWidth: row === 8 ? 0 : row % 3 === 2 ? 2.5 : 0.5,
+          borderRightWidth: col === 8 ? 0 : col % 3 === 2 ? 4 : 1,
+          borderBottomWidth: row === 8 ? 0 : row % 3 === 2 ? 4 : 1,
         },
       ]}
     >
