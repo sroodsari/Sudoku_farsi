@@ -19,9 +19,6 @@ type Props = CellState & {
 };
 
 function CellInner({ index, size, value, given, selected, peer, match, conflict, onPress }: Props) {
-  const col = index % 9;
-  const row = (index / 9) | 0;
-
   const bg = conflict
     ? colors.cellConflict
     : selected
@@ -49,8 +46,6 @@ function CellInner({ index, size, value, given, selected, peer, match, conflict,
           width: size,
           height: size,
           backgroundColor: bg,
-          borderRightWidth: col === 8 ? 0 : col % 3 === 2 ? 4 : 1,
-          borderBottomWidth: row === 8 ? 0 : row % 3 === 2 ? 4 : 1,
         },
       ]}
     >
@@ -75,7 +70,6 @@ const styles = StyleSheet.create({
   cell: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: colors.cellBoxBorder,
   },
   text: {
     textAlign: 'center',

@@ -3,7 +3,7 @@ import { type PropsWithChildren } from 'react';
 
 export default function Root({ children }: PropsWithChildren) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

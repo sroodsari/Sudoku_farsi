@@ -3,16 +3,9 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { I18nManager, Platform, View } from 'react-native';
+import { Platform, View } from 'react-native';
 import 'react-native-reanimated';
 import { colors } from '@/constants/colors';
-
-if (!I18nManager.isRTL) {
-  try {
-    I18nManager.allowRTL(true);
-    I18nManager.forceRTL(true);
-  } catch {}
-}
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
