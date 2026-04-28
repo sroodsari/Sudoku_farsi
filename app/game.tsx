@@ -253,7 +253,8 @@ export default function GameScreen() {
     return state.values.map((v, i) => {
       const peer = peerSet ? peerSet.has(i) : false;
       const match = selValue > 0 && v === selValue && i !== sel;
-      const locked = state.given[i] || (v !== 0 && v === state.solution[i]);
+      const correct = !state.given[i] && v !== 0 && v === state.solution[i];
+      const locked = state.given[i] || correct;
       return {
         value: v,
         given: locked,
@@ -261,9 +262,26 @@ export default function GameScreen() {
         peer,
         match,
         conflict: !!conflicts[i],
+        correct,
       };
     });
-  }, [state.values, state.given, state.selected, conflicts]);
+  }, [state.values, state.given, state.selected, state.solution, conflicts]);
+
+  const prevCorrect = useRef<boolean[] | null>(null);
+  useEffect(() => {
+    if (!state.ready) return;
+    const curr = cells.map((c) => c.correct);
+    const prev = prevCorrect.current;
+    if (prev) {
+      for (let i = 0; i < curr.length; i++) {
+        if (curr[i] && !prev[i]) {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          break;
+        }
+      }
+    }
+    prevCorrect.current = curr;
+  }, [cells, state.ready]);
 
   const onCellPress = useCallback((idx: number) => {
     Haptics.selectionAsync();
