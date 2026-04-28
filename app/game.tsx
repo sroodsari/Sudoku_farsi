@@ -347,10 +347,10 @@ export default function GameScreen() {
       <View style={styles.bottomBar}>
         <View style={styles.bottomRow}>
           <View style={styles.bottomBtn}>
-            <AppButton label={fa.help} onPress={onOpenHelp} variant="secondary" />
+            <AppButton label={fa.help} onPress={onOpenHelp} variant="secondary" size="sm" />
           </View>
           <View style={styles.bottomBtn}>
-            <AppButton label={fa.hint} onPress={onHint} variant="secondary" />
+            <AppButton label={fa.hint} onPress={onHint} variant="secondary" size="sm" />
           </View>
         </View>
       </View>

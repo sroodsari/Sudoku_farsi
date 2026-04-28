@@ -6,10 +6,11 @@ type Props = {
   label: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary';
+  size?: 'md' | 'sm';
   disabled?: boolean;
 };
 
-export function AppButton({ label, onPress, variant = 'primary', disabled = false }: Props) {
+export function AppButton({ label, onPress, variant = 'primary', size = 'md', disabled = false }: Props) {
   const handlePress = () => {
     if (disabled) return;
     Haptics.selectionAsync();
@@ -17,9 +18,20 @@ export function AppButton({ label, onPress, variant = 'primary', disabled = fals
   };
   return (
     <Pressable onPress={handlePress} disabled={disabled} style={({ pressed }) => [styles.touch, pressed && !disabled && styles.pressed]}>
-      <View style={[styles.btn, variant === 'secondary' && styles.btnSecondary, disabled && styles.btnDisabled]}>
+      <View
+        style={[
+          styles.btn,
+          size === 'sm' && styles.btnSm,
+          variant === 'secondary' && styles.btnSecondary,
+          disabled && styles.btnDisabled,
+        ]}
+      >
         <Text
-          style={[styles.label, variant === 'secondary' && styles.labelSecondary]}
+          style={[
+            styles.label,
+            size === 'sm' && styles.labelSm,
+            variant === 'secondary' && styles.labelSecondary,
+          ]}
           allowFontScaling={false}
           numberOfLines={1}
           adjustsFontSizeToFit
@@ -44,6 +56,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 16,
   },
+  btnSm: {
+    minHeight: 44,
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+  },
   btnSecondary: {
     backgroundColor: colors.surface,
     borderWidth: 2,
@@ -56,5 +74,6 @@ const styles = StyleSheet.create({
     color: colors.primaryText,
     textAlign: 'center',
   },
+  labelSm: { fontSize: 18 },
   labelSecondary: { color: colors.primary },
 });
