@@ -326,9 +326,6 @@ export default function GameScreen() {
         >
           <Text allowFontScaling={false} style={styles.iconText}>‹</Text>
         </Pressable>
-        <Text allowFontScaling={false} style={styles.diffLabel}>
-          {fa[state.difficulty]}
-        </Text>
         <View style={styles.iconBtn} />
       </View>
 
