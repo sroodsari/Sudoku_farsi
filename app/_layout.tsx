@@ -13,6 +13,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     'Vazirmatn-Regular': require('../assets/fonts/Vazirmatn-Regular.ttf'),
     'Vazirmatn-Bold': require('../assets/fonts/Vazirmatn-Bold.ttf'),
+    'Vazirmatn-Black': require('../assets/fonts/Vazirmatn-Black.ttf'),
   });
 
   const [webFontsPainted, setWebFontsPainted] = useState(Platform.OS !== 'web');
