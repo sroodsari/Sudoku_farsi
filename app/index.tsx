@@ -33,9 +33,6 @@ export default function Home() {
           <Text allowFontScaling={false} style={styles.title}>
             {fa.appTitle}
           </Text>
-          <Text allowFontScaling={false} style={styles.subtitle}>
-            {fa.chooseDifficulty}
-          </Text>
         </View>
 
         <View style={styles.buttons}>
