@@ -65,11 +65,11 @@ const styles = StyleSheet.create({
   },
   header: { alignItems: 'center', marginTop: 32 },
   title: {
-    fontFamily: 'Vazirmatn-Black',
-    fontSize: 76,
+    fontFamily: 'Lalezar',
+    fontSize: 96,
     color: colors.primary,
-    letterSpacing: -2,
-    marginBottom: 16,
+    lineHeight: 110,
+    marginBottom: 12,
   },
   subtitle: {
     fontFamily: 'Vazirmatn-Regular',
