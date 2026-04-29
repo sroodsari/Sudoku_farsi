@@ -15,6 +15,7 @@ export default function RootLayout() {
     'Vazirmatn-Bold': require('../assets/fonts/Vazirmatn-Bold.ttf'),
     'Vazirmatn-Black': require('../assets/fonts/Vazirmatn-Black.ttf'),
     'Lalezar': require('../assets/fonts/Lalezar-Regular.ttf'),
+    'Gulzar': require('../assets/fonts/Gulzar-Regular.ttf'),
   });
 
   const [webFontsPainted, setWebFontsPainted] = useState(Platform.OS !== 'web');
