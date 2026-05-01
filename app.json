@@ -9,9 +9,12 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.shopencore.sudokufarsi",
-      "buildNumber": "1"
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -42,7 +45,10 @@
         {
           "fonts": [
             "./assets/fonts/Vazirmatn-Regular.ttf",
-            "./assets/fonts/Vazirmatn-Bold.ttf"
+            "./assets/fonts/Vazirmatn-Bold.ttf",
+            "./assets/fonts/Vazirmatn-Black.ttf",
+            "./assets/fonts/Lalezar-Regular.ttf",
+            "./assets/fonts/Gulzar-Regular.ttf"
           ]
         }
       ]
